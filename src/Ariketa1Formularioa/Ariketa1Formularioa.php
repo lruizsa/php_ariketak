@@ -29,6 +29,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $email = htmlspecialchars($_POST["email"]);
     }
+
+    if (empty($_POST["telefonoa"]))
+
 }
 
 ?>
