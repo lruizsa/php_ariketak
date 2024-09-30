@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($login_success) {
         // Limpiar el buffer de salida antes de redirigir
         ob_end_clean();
-        header("Location: https://www.w3schools.com"); // Babestutako orrira bideratu
+        header("Location: babesOrri.html"); // Babestutako orrira bideratu
         exit;
     } else {
         echo "Login okerra! Saiatu berriro.";
