@@ -1,24 +1,24 @@
 <?php
-session_start(); // Iniciar sesión para acceder al ID del usuario
+session_start(); 
 
-// Verificar si el usuario ha iniciado sesión
+
 if (!isset($_SESSION['user_id'])) {
-    die("Mesedez, logeatu lehenik."); // Mostrar un mensaje si no hay sesión iniciada
+    die("Mesedez, logeatu lehenik."); 
 }
 
-$zerbitzari = "db"; // Dirección del servidor de base de datos
-$erabiltzailea = "root"; // Nombre de usuario de la base de datos
-$pasahitza = "root"; // Contraseña de la base de datos
-$datuBasesa = "pelikulak_puntuazioa"; // Nombre de la base de datos
+$zerbitzari = "db"; 
+$erabiltzailea = "root"; 
+$pasahitza = "root"; 
+$datuBasesa = "pelikulak_puntuazioa"; 
 
-// Habilitar excepciones en MySQLi para manejar errores con try-catch
+
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 
 try {
-    // Crear la conexión con la base de datos
+    
     $conn = new mysqli($zerbitzari, $erabiltzailea, $pasahitza, $datuBasesa);
 
-    // Procesar los datos enviados por el formulario
+    
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $isan = isset($_POST['isan']) ? $_POST['isan'] : '';
         $filmIzen = isset($_POST['filmIzen']) ? $_POST['filmIzen'] : '';
@@ -26,9 +26,9 @@ try {
         $puntuazioa = isset($_POST['puntuazioa']) ? $_POST['puntuazioa'] : '';
         $user_id = $_SESSION['user_id'];
 
-        // Verificar si se presionó el botón "Egindako bozkaketak ikusi"
+        
         if (isset($_POST['datuak'])) {
-            // Obtener las votaciones anteriores del usuario
+            
             $sql = "SELECT ISAN, Izena, Urtea, Puntuazioa FROM Pelikulak_puntuazioa WHERE id_erabiltzailea = ?";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("i", $user_id);
@@ -63,7 +63,7 @@ try {
             $stmt->close();
         } 
         elseif (!empty($isan) && !empty($filmIzen) && !empty($urtea) && !empty($puntuazioa)) {
-            // Actualizar la puntuación de la película
+           
             $sql = "UPDATE Pelikulak_puntuazioa SET Izena = ?, Puntuazioa = ? WHERE ISAN = ? AND id_erabiltzailea = ?";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("sssi", $filmIzen, $puntuazioa, $isan, $user_id);
@@ -79,14 +79,14 @@ try {
             $stmt->close();
         } 
         elseif(!empty($isan) && empty($filmIzen) && isset($_POST['ezabatu'])) {
-            // Eliminar el registro de Bozkatu primero
+            
             $sql_delete_boztatu = "DELETE FROM Bozkatu WHERE ISAN = ? AND id_erabiltzailea = ?";
             $stmt_boztatu = $conn->prepare($sql_delete_boztatu);
             $stmt_boztatu->bind_param("si", $isan, $user_id);
             $stmt_boztatu->execute();
             $stmt_boztatu->close();
 
-            // Luego, eliminar el registro de Pelikulak_puntuazioa
+            
             $sql = "DELETE FROM Pelikulak_puntuazioa WHERE ISAN = ? AND id_erabiltzailea = ?";
             $stmt = $conn->prepare($sql);
             $stmt->bind_param("si", $isan, $user_id);
@@ -160,7 +160,7 @@ try {
         }
     }
 
-    // Cerrar la conexión con la base de datos
+    
     $conn->close();
 
 } catch (mysqli_sql_exception $e) {
