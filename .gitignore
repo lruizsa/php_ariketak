@@ -1,3 +1,3 @@
 /vendor/
 /mysqldata/
-mysqldata/ib_buffer_pool
+/mysqldata/*
