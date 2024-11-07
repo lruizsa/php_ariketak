@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/formularioa.css">
+    <title>Formularioa</title>
+</head>
+<body>
+
+    <h2>Puntuatu zure gustokoen filma:</h2> <br>
+
+    <form method="post" action="formularioa.php">  
+        ISAN zenbakia: <input type="text" name="isan"><br><br> 
+        Filmaren izena: <input type="text" name="filmIzen" ><br><br>
+        Urtea: <input type="text" name="urtea" ><br><br>
+        Puntuazioa: 
+        <select name="puntuazioa">
+            <option value="1">Izar 1</option>
+            <option value="2">Izar 2</option>
+            <option value="3">Izar 3</option>
+            <option value="4">Izar 4</option>
+            <option value="5">Izar 5</option>
+        </select>
+        <br><br>
+
+        <input type="submit" name="bidali" value="Bidali puntuazioa"><br><br>
+        <input type="submit" name="datuak" value="Egindako bozkaketak ikusi"><br><br>
+        <input type="submit" name="izena" value="Egindako bozkaketak ikusi pelikularen izenaren arabera"><br><br>
+        <input type="submit" name="ezabatu" value="Bozkaketa ezabatu"><br><br>
+    </form>
+
+    <div id="puntuazioen-zerrenda"></div>
+
+    <input type="button" value="Atera" onclick="window.location.href='login.html';">
+
+</body>
+</html>

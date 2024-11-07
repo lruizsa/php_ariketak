@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manex Aranzadi Egaña</title>
+</head>
+<body>
+    <form action="./form.php" method="POST" enctype="multipart/form-data">
+        Name: <input type="text" name="name"><br>
+        E-mail: <input type="text" name="email"><br>
+        Password: <input type="password" name="password"><br>
+        Website: <input type="text" name="website"><br>
+        Comment: <textarea name="comment" rows="5" cols="40"></textarea><br>
+        Gender:
+            <input type="radio" name="gender" value="female">Female
+            <input type="radio" name="gender" value="male">Male
+            <input type="radio" name="gender" value="other">Other
+        <br>
+        <select name="taskOption">
+            <option value="First">First</option>
+            <option value="Second">Second</option>
+            <option value="Third">Third</option>
+        </select>
+        <br>
+        Upload file: <input type="file" name="fileUpload"><br>
+        <input type="submit">
+        </form>
+</body>
+</html>
